@@ -18,7 +18,7 @@ CREATE TABLE death_rates(
  	alcohol_use_count INTEGER,
  	diet_low_in_fruits_count INTEGER,
  	unsafe_water_source_count INTEGER,
- 	secondhand_smoke-count INTEGER,
+ 	secondhand_smoke_count INTEGER,
  	low_birth_weight_count INTEGER,
  	child_wasting_count INTEGER,
  	unsafe_sex_count INTEGER,
