@@ -1,4 +1,4 @@
-Year,state_code,Locationdesc,Response,Break_Out,Break_Out_Category,Sample_Size,Data_value,latitude,longtitude
+date_year,state_code,state_name,response,break_out,break_out_category,sample_size,data_value,latitude,longtitude
 2019,DE,Delaware,Obese (BMI 30.0 - 99.8),55-64,Age Group,299,40.1,39.008830667000495,-75.57774116799965
 2019,KS,Kansas,Obese (BMI 30.0 - 99.8),25-34,Age Group,386,34.3,38.34774030000045,-98.20078122699965
 2019,LA,Louisiana,Obese (BMI 30.0 - 99.8),55-64,Age Group,395,41.9,31.31266064400046,-92.44568007099969
