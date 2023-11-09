@@ -31,7 +31,7 @@ CREATE TABLE death_rates(
  	high_body_mass_index_count INTEGER,
  	unsafe_sanitation_count INTEGER,
  	drug_use_count INTEGER,
- 	low_bone_mineral_density-count INTEGER,
+ 	low_bone_mineral_density_count INTEGER,
  	vitamin_a_deficiency_count INTEGER,
  	child_stunting_count INTEGER,
  	non_exclusive_breastfeeding_count INTEGER,
