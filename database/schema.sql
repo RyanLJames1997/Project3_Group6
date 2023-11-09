@@ -6,7 +6,7 @@ CREATE TABLE us_states(
 CREATE TABLE fast_food(
 	state_code  VARCHAR(10),
     FOREIGN KEY (state_code) REFERENCES us_states(state_code),
-	count INTEGER
+	counts INTEGER
 );
 
 CREATE TABLE death_rates(
