@@ -1,4 +1,4 @@
-state_name,description,2014_amount,2015_amount,2016_amount,2017_amount,2018_amount,2019_amount
+state_name,description,amount_2014,amount_2015,amount_2016,amount_2017,amount_2018,amount_2019
 United States,GDP (Billions of Dollars),16932.051,17390.295,17680.274,18076.651,18609.078,19036.052
 Alabama,GDP (Billions of Dollars),189.88629999999998,191.33520000000001,194.28379999999999,196.9749,200.3726,203.4327
 Alaska,GDP (Billions of Dollars),54.188199999999995,54.7408,54.2466,54.2787,53.327,53.433800000000005
