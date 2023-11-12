@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fastfood Restaurant Counts Horizontal Bar Chart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .chart-container {
+            width: 80%;
+            margin: 50px auto;
+        }
+        .bar-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        .bar {
+            text-align: right;
+            padding: 5px;
+            margin-right: 5px;
+            min-width: 30px;
+            color: white;
+        }
+    </style>
+    <!-- Include D3.js library -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+
+<h1>Fastfood Restaurant Counts Horizontal Bar Chart</h1>
+
+<div class="chart-container" id="chartContainer"></div>
+
+<script>
+    // Function to generate a random color
+    function getRandomColor() {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+
+    // Function to create a horizontal bar chart using D3.js with random colors
+    function createHorizontalBarChart(data) {
+        const chartContainer = d3.select("#chartContainer");
+
+        chartContainer
+            .selectAll(".bar-container")
+            .data(data)
+            .enter()
+            .append("div")
+            .attr("class", "bar-container")
+            .append("div")
+            .attr("class", "bar")
+            .style("width", d => d.counts + "px")
+            .style("background-color", getRandomColor)
+            .text(d => d.counts + " - " + d.state_name);
+    }
+
+    // Use d3.json to load the data from the JSON file
+    d3.json("savedata_records.json").then(data => {
+        // Call the function with the loaded data
+        createHorizontalBarChart(data);
+    });
+</script>
+
+</body>
+</html>
