@@ -1,0 +1,44 @@
+.navbar-brand {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 2px;
+  }
+  .navbar-brand:hover {
+    cursor: pointer;
+    border-radius: 15px;
+    box-shadow: 0 0 6px 1px;
+    transition: 200ms all ease-in-out;
+  }
+  /* body {
+    background: linear-gradient(
+      112.1deg,
+      rgb(32, 38, 57) 11.4%,
+      rgb(63, 76, 119) 70.2%
+    );
+  }
+  .container {
+    background-color: rgb(250, 250, 250);
+  } */
+  
+  .navbar {
+    background-color: #a9d6e5;
+  }
+  
+  canvas {
+    text-align: center;
+    margin: 0 auto;
+  }
+  h1 {
+    text-align: center;
+    margin: 0 auto;
+  }
+  h4 {
+    text-align: center;
+    margin: 0 auto;
+  }
+  
+  #diPrevH4 {
+    text-align: center;
+    margin: 0 auto;
+  }
+  
