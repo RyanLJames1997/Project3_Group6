@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bar Graph</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Death Rates related to Obesity</h1>
+  <canvas id="barChart" width="800" height="200"></canvas>
+
+  <script>
+    // Your JSON data
+    const jsonData = {
+      "0": {"date_year": 2014, "high_body_mass_index_count": 349778.78, "high_systolic_blood_pressure_count": 445917.8, "diet_high_in_sodium_count": 43159.305, "diet_low_in_fruits_count": 36476.297, "high_ldl_cholesterol_count": 210125.83, "diet_low_in_vegetables_count": 26558.242},
+      "1": {"date_year": 2015, "high_body_mass_index_count": 359658.56, "high_systolic_blood_pressure_count": 456935.97, "diet_high_in_sodium_count": 44306.266, "diet_low_in_fruits_count": 37081.824, "high_ldl_cholesterol_count": 211899.23, "diet_low_in_vegetables_count": 26943.072},
+      "2": {"date_year": 2016, "high_body_mass_index_count": 369395.97, "high_systolic_blood_pressure_count": 465558.34, "diet_high_in_sodium_count": 45407.902, "diet_low_in_fruits_count": 37687.81, "high_ldl_cholesterol_count": 213530.62, "diet_low_in_vegetables_count": 27160.889},
+      "3": {"date_year": 2017, "high_body_mass_index_count": 373207.16, "high_systolic_blood_pressure_count": 467248.03, "diet_high_in_sodium_count": 45804.543, "diet_low_in_fruits_count": 38014.46, "high_ldl_cholesterol_count": 213824.84, "diet_low_in_vegetables_count": 27068.293},
+      "4": {"date_year": 2018, "high_body_mass_index_count": 384190.62, "high_systolic_blood_pressure_count": 481551.38, "diet_high_in_sodium_count": 47378.727, "diet_low_in_fruits_count": 39209.766, "high_ldl_cholesterol_count": 220234.86, "diet_low_in_vegetables_count": 27636.186},
+      "5": {"date_year": 2019, "high_body_mass_index_count": 393859.12, "high_systolic_blood_pressure_count": 495201.2, "diet_high_in_sodium_count": 48500.992, "diet_low_in_fruits_count": 40171.805, "high_ldl_cholesterol_count": 226342.6, "diet_low_in_vegetables_count": 27976.824}
+    };
+
+    // Extract data for each category
+    const labels = Object.values(jsonData).map(entry => entry.date_year.toString());
+    const highBMICount = Object.values(jsonData).map(entry => entry.high_body_mass_index_count);
+    const highSystolicCount = Object.values(jsonData).map(entry => entry.high_systolic_blood_pressure_count);
+    const highSodiumCount = Object.values(jsonData).map(entry => entry.diet_high_in_sodium_count);
+    const lowFruitsCount = Object.values(jsonData).map(entry => entry.diet_low_in_fruits_count);
+    const highLDLCount = Object.values(jsonData).map(entry => entry.high_ldl_cholesterol_count);
+    const lowVegetablesCount = Object.values(jsonData).map(entry => entry.diet_low_in_vegetables_count);
+
+    // Create the bar chart
+    const ctx = document.getElementById('barChart').getContext('2d');
+    const barChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [
+          {
+            label: 'High BMI Count',
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1,
+            data: highBMICount
+          },
+          {
+            label: 'High Systolic Blood Pressure Count',
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgba(255, 99, 132, 1)',
+            borderWidth: 1,
+            data: highSystolicCount
+          },
+          {
+            label: 'Diet High in Sodium Count',
+            backgroundColor: 'rgba(255, 205, 86, 0.2)',
+            borderColor: 'rgba(255, 205, 86, 1)',
+            borderWidth: 1,
+            data: highSodiumCount
+          },
+          {
+            label: 'Diet Low in Fruits Count',
+            backgroundColor: 'rgba(255, 159, 64, 0.2)',
+            borderColor: 'rgba(255, 159, 64, 1)',
+            borderWidth: 1,
+            data: lowFruitsCount
+          },
+          {
+            label: 'High LDL Cholesterol Count',
+            backgroundColor: 'rgba(153, 102, 255, 0.2)',
+            borderColor: 'rgba(153, 102, 255, 1)',
+            borderWidth: 1,
+            data: highLDLCount
+          },
+          {
+            label: 'Diet Low in Vegetables Count',
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1,
+            data: lowVegetablesCount
+          }
+        ]
+      },
+      options: {
+      responsive: true, // Make the chart responsive
+      maintainAspectRatio: true, // Disable aspect ratio to fit the window
+      scales: {
+        xAxes: [{ stacked: true }],
+        yAxes: [{ stacked: true }]
+        }
+      }
+    });
+  </script>
+</body>
+</html>

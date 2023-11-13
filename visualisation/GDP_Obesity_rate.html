@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Top Ten States - Grouped Bar Chart</title>
+  <!-- Include Chart.js library -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Comparison of GDP to Obesity Rate per State</h1>
+  <canvas id="groupedBarChart" width="800" height="250"></canvas>
+
+  <script>
+    // Your data
+    const jsonData = [
+      {"state_name":"Alabama","amount_2019":203.4327,"state_code":"AL","obesity_rate":34.6666666667},{"state_name":"Alaska","amount_2019":53.4338,"state_code":"AK","obesity_rate":33.0083333333},{"state_name":"Arizona","amount_2019":325.3953,"state_code":"AZ","obesity_rate":32.6333333333},{"state_name":"Arkansas","amount_2019":117.1262,"state_code":"AR","obesity_rate":35.0416666667},{"state_name":"California","amount_2019":2729.2258,"state_code":"CA","obesity_rate":30.9583333333},{"state_name":"Colorado","amount_2019":358.4385,"state_code":"CO","obesity_rate":29.05},{"state_name":"Connecticut","amount_2019":251.5682,"state_code":"CT","obesity_rate":32.3333333333},{"state_name":"Delaware","amount_2019":64.1435,"state_code":"DE","obesity_rate":33.8833333333},{"state_name":"Florida","amount_2019":965.6725,"state_code":"FL","obesity_rate":31.4416666667},{"state_name":"Georgia","amount_2019":557.3644,"state_code":"GA","obesity_rate":33.0916666667},{"state_name":"Hawaii","amount_2019":79.2134,"state_code":"HI","obesity_rate":28.8666666667},{"state_name":"Idaho","amount_2019":74.1626,"state_code":"ID","obesity_rate":31.6916666667},{"state_name":"Illinois","amount_2019":775.9981,"state_code":"IL","obesity_rate":32.275},{"state_name":"Indiana","amount_2019":337.9022,"state_code":"IN","obesity_rate":34.25},{"state_name":"Iowa","amount_2019":173.722,"state_code":"IA","obesity_rate":33.8083333333},{"state_name":"Kansas","amount_2019":159.8262,"state_code":"KS","obesity_rate":34.7833333333},{"state_name":"Kentucky","amount_2019":192.9719,"state_code":"KY","obesity_rate":35.5916666667},{"state_name":"Louisiana","amount_2019":237.0446,"state_code":"LA","obesity_rate":35.1666666667},{"state_name":"Maine","amount_2019":59.5534,"state_code":"ME","obesity_rate":31.8583333333},{"state_name":"Maryland","amount_2019":368.0564,"state_code":"MD","obesity_rate":32.7416666667},{"state_name":"Massachusetts","amount_2019":514.1708,"state_code":"MA","obesity_rate":29.4},{"state_name":"Michigan","amount_2019":467.107,"state_code":"MI","obesity_rate":34.625},{"state_name":"Minnesota","amount_2019":340.5571,"state_code":"MN","obesity_rate":32.2083333333},{"state_name":"Mississippi","amount_2019":100.9828,"state_code":"MS","obesity_rate":36.15},{"state_name":"Missouri","amount_2019":290.6195,"state_code":"MO","obesity_rate":33.6},{"state_name":"Montana","amount_2019":46.8862,"state_code":"MT","obesity_rate":31.825},{"state_name":"Nebraska","amount_2019":118.6037,"state_code":"NE","obesity_rate":34.125},{"state_name":"Nevada","amount_2019":156.9591,"state_code":"NV","obesity_rate":33.3416666667},{"state_name":"New Hampshire","amount_2019":76.8191,"state_code":"NH","obesity_rate":33.2833333333},{"state_name":"New Mexico","amount_2019":94.8974,"state_code":"NM","obesity_rate":32.9083333333},{"state_name":"New York","amount_2019":1500.8334,"state_code":"NY","obesity_rate":31.0666666667},{"state_name":"North Carolina","amount_2019":512.8348,"state_code":"NC","obesity_rate":34.45},{"state_name":"North Dakota","amount_2019":56.3854,"state_code":"ND","obesity_rate":35.075},{"state_name":"Ohio","amount_2019":613.2514,"state_code":"OH","obesity_rate":34.1416666667},{"state_name":"Oklahoma","amount_2019":201.1615,"state_code":"OK","obesity_rate":35.4416666667},{"state_name":"Oregon","amount_2019":219.588,"state_code":"OR","obesity_rate":31.4},{"state_name":"Pennsylvania","amount_2019":715.0607,"state_code":"PA","obesity_rate":33.5583333333},{"state_name":"Rhode Island","amount_2019":53.4114,"state_code":"RI","obesity_rate":31.8},{"state_name":"South Carolina","amount_2019":213.2378,"state_code":"SC","obesity_rate":34.2},{"state_name":"South Dakota","amount_2019":46.6505,"state_code":"SD","obesity_rate":35.075},{"state_name":"Tennessee","amount_2019":331.1766,"state_code":"TN","obesity_rate":34.325},{"state_name":"Texas","amount_2019":1779.7814,"state_code":"TX","obesity_rate":34.5833333333},{"state_name":"Utah","amount_2019":172.0384,"state_code":"UT","obesity_rate":32.0},{"state_name":"Vermont","amount_2019":29.9407,"state_code":"VT","obesity_rate":29.25},{"state_name":"Virginia","amount_2019":489.1991,"state_code":"VA","obesity_rate":32.7333333333},{"state_name":"Washington","amount_2019":533.1504,"state_code":"WA","obesity_rate":31.35},{"state_name":"West Virginia","amount_2019":72.6334,"state_code":"WV","obesity_rate":35.2583333333},{"state_name":"Wisconsin","amount_2019":303.669,"state_code":"WI","obesity_rate":34.3083333333},{"state_name":"Wyoming","amount_2019":38.4466,"state_code":"WY","obesity_rate":32.1333333333},
+
+    ];
+
+    // Sort the data based on GDP_2019 in descending order
+    const sortedData = jsonData.sort((a, b) => b.amount_2019 - a.amount_2019);
+
+    // Take the top ten states
+    const topTenData = sortedData.slice(0, 10);
+
+    // Extract labels, GDP_2019, and Obesity_Rate for the chart
+    const labels = topTenData.map(entry => entry.state_name);
+    const gdpValues = topTenData.map(entry => entry.amount_2019);
+    const obesityRateValues = topTenData.map(entry => entry.obesity_rate.toFixed(2)); // Round to 2 decimal places
+
+    // Create a grouped bar chart
+    const ctx = document.getElementById('groupedBarChart').getContext('2d');
+    const groupedBarChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [
+          {
+            label: 'GDP 2019',
+            data: gdpValues,
+            backgroundColor: 'rgba(75, 192, 192, 0.2)', // Adjust as needed
+            borderColor: 'rgba(75, 192, 192, 1)', // Adjust as needed
+            borderWidth: 1
+          },
+          {
+            label: 'Obesity Rate',
+            data: obesityRateValues,
+            type: 'line', // Use a line chart for better scaling
+            fill: false,
+            yAxisID: 'obesityAxis', // Use a separate y-axis for Obesity Rate
+            backgroundColor: 'rgba(255, 99, 132, 0.2)', // Adjust as needed
+            borderColor: 'rgba(255, 99, 132, 1)', // Adjust as needed
+            borderWidth: 2
+          }
+        ]
+      },
+      options: {
+        
+        scales: {
+          x: {
+            beginAtZero: true
+          },
+          y: {
+            beginAtZero: true
+          },
+          obesityAxis: {
+            position: 'right',
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
