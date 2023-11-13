@@ -60,10 +60,10 @@ CREATE TABLE gdp_state(
     state_name VARCHAR(50)
 	FOREIGN KEY (state_name) REFERENCES us_states(state_name),
 	description VARCHAR(30),
-	2014_amount REAL,
-	2015_amount REAL,
-	2016_amount REAL,	
-	2017_amount REAL,	
-	2018_amount REAL,	
-	2019_amount REAL
+	amount_2014 REAL,
+	amount_2015 REAL,
+	amount_2016 REAL,	
+	amount_2017 REAL,	
+	amount_2018 REAL,	
+	amount_2019 REAL
 );

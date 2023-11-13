@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Obesity in the United States</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="static/css/style.css" />
+
+    <!-- Include Leaflet library -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <!-- Include Leaflet.heat library -->
+    <script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
+    <!-- Include D3.js library -->
+    <!-- <script src="https://d3js.org/d3.v5.min.js"></script> -->
+    <!-- Include jQuery for simplifying DOM manipulation --> 
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <style>
+      body {
+          font-family: Arial, sans-serif;
+      }
+      .chart-container {
+          width: 80%;
+          margin: 50px auto;
+      }
+      .bar-container {
+          display: flex;
+          align-items: center;
+          margin-bottom: 5px;
+      }
+      .bar {
+          text-align: right;
+          padding: 5px;
+          margin-right: 5px;
+          min-width: 30px;
+          color: white;
+      }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 jumbotron text-center">
+        <h1>Obesity in the United States</h1>
+        <h2>Obesity vs Fastfood</h2>
+        <p>Use the interactive charts below to explore the dataset</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+        <div class="well">
+          <h5>Select US State:</h5>
+          <select id="selDataset" onchange="optionChanged(this.value)"></select>
+          <div>
+            <br><a href="{{ url_for('obesity_gdp') }}">Obesity vs GDP</a><br>
+          </div>
+          <div>
+            <br><a href="{{ url_for('death_rates') }}">Obesity related Deaths</a><br>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-10">
+        <!-- Container for the map -->
+        <h2>Fastfood Restaurants vs Overweight and Obesity Rates</h2>
+        <div id="map" style="height: 400px;"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-5">
+
+        <div id="bar"></div>
+      </div>
+      <div class="col-md-6">
+
+        <div id="gauge"></div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Manually added canvas element for heatmap -->
+  <canvas class="leaflet-heatmap-layer leaflet-layer leaflet-zoom-animated" width="602" height="739" style="transform-origin: 50% 50%; transform: translate3d(459px, 0px, 0px);"></canvas>
+
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script type="text/javascript" src="./static/js/app.js"></script>
+  <script type="text/javascript">
+    var myVar = createObesityChart({{data|tojson}})
+ </script>
+
+
+
+
+</body>
+
+</html>
