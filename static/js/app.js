@@ -198,9 +198,9 @@ function createBarChart(data) {
     xaxis: {
         title: "Number of Fastfoods"
     },
-    // yaxis: {
-    //     title: "State"
-    // },
+    yaxis: {
+         title: "State"
+    },
     margin: {
         l:100,
         t: 100,
@@ -255,7 +255,7 @@ function createLineChart(data) {
             title: "Age"
         },
         yaxis: {
-            title: "Value"
+            title: "BMI Value"
         },
         margin: {
             l:100,
